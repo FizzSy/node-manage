@@ -23,7 +23,7 @@ mongoose
 app.use(passport.initialize());
 // passportConfig(passport);
 passportConfig(passport);
-app.use("/manage", routes);
+app.use("/", routes);
 
 const port = process.env.PORT || 1002;
 
