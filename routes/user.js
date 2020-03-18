@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt-nodejs");
 const gravatar = require("gravatar");
 const jwt = require("jsonwebtoken");
 const { secretKey } = require("../config/key");
@@ -39,7 +39,7 @@ router.post("/register", (req, res) => {
       });
       bcrypt.genSalt(10, function(err, salt) {
         //生成随机字符salt
-        bcrypt.hash(newUser.password, salt, function(err, hash) {
+        bcrypt.hash(newUser.password, salt, null, function(err, hash) {
           //用随机字符进行加密
           if (err) {
             throw err;
@@ -74,7 +74,10 @@ router.post("/login", (req, res) => {
       return res.json({ error: 1, msg: "用户不存在" });
     }
     console.log(user);
-    bcrypt.compare(password, user.password).then(isMatch => {
+    bcrypt.compare(password, user.password, (err, isMatch) => {
+      if (err) {
+        throw err;
+      }
       if (isMatch) {
         const rule = {
           id: user.id,
