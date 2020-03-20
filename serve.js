@@ -7,9 +7,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const passportConfig = require("./config/passport");
 const cors = require("cors");
-const history = require("connect-history-api-fallback");
 
-app.use(history());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true })); //解析body参数
 app.use(bodyParser.json());
