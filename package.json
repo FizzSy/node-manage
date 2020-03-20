@@ -10,7 +10,7 @@
     "client-install": "npm install --prefix client",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run serve\" \"npm run client\"",
-    "prod": "pm2 start npm --name manage -- run start"
+    "prod": "pm2 start npm --watch --name manage -- run start"
   },
   "keywords": [],
   "author": "",
