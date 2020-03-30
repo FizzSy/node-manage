@@ -6,7 +6,7 @@ const profile = require("./profile");
 router.get("/", (req, res) => {
   res.status(200).json({
     error: 0,
-    msg: "hello world~"
+    msg: "hello world~~~"
   });
 });
 
